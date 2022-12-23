@@ -24,6 +24,7 @@ public class SpringConfig {
                 .and()
                     .formLogin()
                     .loginPage("/members/login").permitAll()
+                    .usernameParameter("email")
                     .defaultSuccessUrl("/")
                 .and()
                     .logout().permitAll()
