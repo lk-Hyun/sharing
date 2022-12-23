@@ -12,20 +12,21 @@
         <table class="table table-hover my-lg-4 my-md-4 my-sm-3">
             <thead class="table-info">
             <tr>
-                <th scope="col">#</th>
+<!--                <th scope="col">#</th>-->
                 <th scope="col">제목</th>
                 <th scope="col" class="text-end">작성자</th>
                 <th scope="col" class="text-center">작성일시</th>
             </tr>
             </thead>
-<!--            <tbody>-->
-<!--            <tr th:each="article : ${articles}" th:onclick="|location.href='view/${article.article_no}'|">-->
-<!--                <td th:text="${article.article_no}"></td>-->
-<!--                <td th:text="${article.title}"></td>-->
-<!--                <td th:text="${article.writer}" class="text-end"></td>-->
-<!--                <td th:text="${article.write_date}" class="text-center"></td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
+            <tbody>
+<!--            <tr th:each="article : ${articles}" th:onclick="|location.href='view/${article.sequence}'|">-->
+            <tr th:each="article : ${articles}">
+<!--                <td th:text="${articleStat.count}"></td>-->
+                <td th:text="${article.title}"></td>
+                <td th:text="${article.createdBy}" class="text-end"></td>
+                <td th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd HH:mm')}" class="text-center"></td>
+            </tr>
+            </tbody>
         </table>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">

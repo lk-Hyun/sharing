@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @ToString(of = {"title", "content", "createdBy", "createdAt", "lastModify"})
 public class Board {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
     private Long id;
 
@@ -22,6 +22,8 @@ public class Board {
     private Member member;
 
     private String title;
+
+    @Lob
     private String content;
     private String createdBy;
 

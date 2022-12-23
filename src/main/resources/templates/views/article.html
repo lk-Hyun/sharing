@@ -9,13 +9,13 @@
     <div class="card mx-auto" style="max-width: 800px">
       <div class="card-header">
       <div class="row mb-2">
-        <div class="col-6" th:text="|제목 : ${board.title}|"></div>
-        <div class="col-3" th:text="|작성자 : ${memberService.findOne(board.user_id).name}|"></div>
-        <div class="col-3" th:text="|작성일 : ${board.date}|"></div>
+        <div class="col-6" th:text="|제목 : ${article.title}|"></div>
+        <div class="col-3" th:text="|작성자 : ${article.createdBy}|"></div>
+        <div class="col-3" th:text="|작성일 : ${article.createdAt}|"></div>
       </div>
         <div class="border"></div>
         <div class="card-body">
-          <div class="content" th:text="${board.content}" style="min-height: 500px"></div>
+          <div class="content" th:text="${article.content}" style="min-height: 500px"></div>
         </div>
       </div>
     </div>

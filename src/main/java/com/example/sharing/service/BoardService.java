@@ -19,6 +19,8 @@ public interface BoardService {
 
     List<Board> readAllPost();
 
+    List<BoardDTO> getBoardDTOs();
+
     Long writePost(BoardDTO boardDTO, String email);
 
     Long postModify(Board board);

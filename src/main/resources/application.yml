@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     properties:
       hibernate:
         show_sql: true
@@ -15,4 +15,4 @@ spring:
 
 logging:
   level:
-    org.hibernate.sql : info
+    org.hibernate.sql : debug

@@ -3,9 +3,16 @@ package com.example.sharing.domain.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BoardDTO {
 
     @NotBlank
@@ -15,4 +22,13 @@ public class BoardDTO {
     @NotEmpty
     @Size(min = 2, message = "글 내용은 최소 2글자 이상 입력해야 합니다")
     private String content;
+
+    private String createdBy;
+    private LocalDateTime createdAt;
+
+//    public BoardDTO(String title, String content, LocalDateTime createdAt) {
+//        this.title = title;
+//        this.content = content;
+//        this.createdAt = createdAt;
+//    }
 }

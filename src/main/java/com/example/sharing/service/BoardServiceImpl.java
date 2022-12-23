@@ -6,11 +6,13 @@ import com.example.sharing.domain.entity.Member;
 import com.example.sharing.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @RequiredArgsConstructor
 @Slf4j
 public class BoardServiceImpl implements BoardService {
@@ -35,11 +37,15 @@ public class BoardServiceImpl implements BoardService {
         Board board = Board.builder()
                 .title(boardDTO.getTitle())
                 .content(boardDTO.getContent())
-                .createdBy(member.getUsername())
+                .createdBy(member.getNickname())
                 .createdAt(LocalDateTime.now())
                 .lastModify(null).build();
 
         return boardRepository.save(board).getId();
+    }
+
+    public List<BoardDTO> getBoardDTOs() {
+        return boardRepository.findBoardDTOs();
     }
 
     @Override
