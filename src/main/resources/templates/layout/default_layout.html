@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:replace="/layout/fragments/head :: headFragment"></th:block>
+
+<body>
+<!-- header fragment 사용 -->
+<th:block th:replace="~{/layout/fragments/header :: headerFragment}"></th:block>
+<!-- content fragment 사용 -->
+<th:block layout:fragment="content"></th:block>
+<!-- footer fragment 사용 -->
+<th:block th:replace="~{/layout/fragments/footer :: footerFragment}"></th:block>
+
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>

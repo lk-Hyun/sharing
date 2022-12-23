@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <h1>식 기본 객체</h1>
+    <ul>
+        <li>request = <span th:text="${#request}" ></span></li>
+        <li>response = <span th:text="${#response}" ></span></li>
+        <li>session = <span th:text="${#session}" ></span></li>
+        <li>servletContext = <span th:text="${#servletContext}" ></span></li>
+        <li>locale = <span th:text="${#locale}" ></span></li>
+
+        <li>session data = <span th:text="${session.sessionData}"></span></li>
+
+        <li>현재 시각 = <span th:text="${#temporals.format(nowDate, 'HH:mm:ss')}"></span></li>
+        <li th:text="|hello|"></li>
+        <li th:text="'hello world'"></li>
+    </ul>
+
+    <ul>
+        <li th:text="10 - 1">10 - 1 = ?</li>
+        <li th:text="10 == 3"></li>
+        <li th:text="(10 % 1 ) ? '홀수' : '짝수'"></li>
+    </ul>
+
+    <form action="test.html" th:action method="post" th:object="${member}">
+        <label for="userID">아이디 입력 : </label>
+        <input type="text" id="userID" th:field="*{user_id}" placeholder="아이디 입력">
+
+        <label for="userPassword">비밀번호 입력 : </label>
+        <input type="password" id="userPassword" th:field="*{user_pw}" placeholder="비밀번호 입력">
+
+        <button class="btn btn-secondary" type="submit">전송!</button>
+    </form>
+
+    <table>
+        <tbody>
+        <tr th:each="region : ${regions}">
+            <td th:text="${region.value}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</th:block>
+</html>
