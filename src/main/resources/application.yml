@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: skq1w2e#
-    url: jdbc:mysql://localhost:3306/Sharing?serverTimezone=UTC&characterEncoding
+    url: jdbc:mysql://localhost:3306/Sharing?serverTimezone=UTC&characterEncoding=utf8
 
   jpa:
     hibernate:

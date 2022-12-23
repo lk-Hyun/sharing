@@ -1,4 +1,5 @@
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--headerFragment 선언-->
 <th:block th:fragment="headerFragment">
     <!--navbar section -->
@@ -13,15 +14,15 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#"
-                               th:href="@{/members/login}" th:if="${member == null}">로그인</a>
+                               th:href="@{/members/login}" sec:authorize="isAnonymous()">로그인</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"
-                               th:href="@{/members/new}" th:if="${member == null}">회원가입</a>
+                               th:href="@{/members/new}" sec:authorize="isAnonymous()">회원가입</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"
-                               th:href="@{/members/logout}" th:if="${member != null}">로그아웃</a>
+                               th:href="@{/logout}" sec:authorize="isAuthenticated()">로그아웃</a>
                         </li>
                     </ul>
                 </div>
