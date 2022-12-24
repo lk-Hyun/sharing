@@ -26,9 +26,4 @@ public class BoardDTO {
     private String createdBy;
     private LocalDateTime createdAt;
 
-//    public BoardDTO(String title, String content, LocalDateTime createdAt) {
-//        this.title = title;
-//        this.content = content;
-//        this.createdAt = createdAt;
-//    }
 }

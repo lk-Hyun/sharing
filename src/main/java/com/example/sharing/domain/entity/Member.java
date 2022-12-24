@@ -32,4 +32,12 @@ public class Member {
     private String email;
 
     private LocalDateTime registerDate;
+
+    public Member(String username, String password, String nickname, String email, LocalDateTime registerDate) {
+        this.username = username;
+        this.password = password;
+        this.nickname = nickname;
+        this.email = email;
+        this.registerDate = registerDate;
+    }
 }

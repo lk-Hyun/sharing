@@ -29,4 +29,13 @@ public class Board {
 
     private LocalDateTime createdAt;
     private LocalDateTime lastModify;
+
+    public Board(Member member, String title, String content, String createdBy, LocalDateTime createdAt, LocalDateTime lastModify) {
+        this.member = member;
+        this.title = title;
+        this.content = content;
+        this.createdBy = createdBy;
+        this.createdAt = createdAt;
+        this.lastModify = lastModify;
+    }
 }

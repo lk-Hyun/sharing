@@ -35,6 +35,7 @@ public class BoardServiceImpl implements BoardService {
         Member member = memberService.findOne(email);
 
         Board board = Board.builder()
+                .member(member)
                 .title(boardDTO.getTitle())
                 .content(boardDTO.getContent())
                 .createdBy(member.getNickname())

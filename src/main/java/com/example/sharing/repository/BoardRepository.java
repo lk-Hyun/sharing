@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
 
-    @Query("select new com.example.sharing.domain.dto.BoardDTO(b.title, b.content, b.createdBy, b.createdAt) from Board b")
+    @Query("select new com.example.sharing.domain.dto.BoardDTO(" +
+            "b.title, b.content, m.nickname, b.createdAt) from Board b join b.member m")
     List<BoardDTO> findBoardDTOs();
 }
