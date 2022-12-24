@@ -19,7 +19,7 @@ public class SpringConfig {
         return http.csrf().disable()
                 .authorizeHttpRequests()
                     .requestMatchers("/css/**", "/js/**").permitAll()
-                    .requestMatchers("/", "/members/login", "/members/new").permitAll()
+                    .requestMatchers("/", "/members/login", "/members/new", "/view/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()

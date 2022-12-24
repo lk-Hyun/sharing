@@ -2,6 +2,7 @@ package com.example.sharing.service;
 
 import com.example.sharing.domain.dto.BoardDTO;
 import com.example.sharing.domain.entity.Board;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,4 +27,7 @@ public interface BoardService {
     Long postModify(Board board);
 
     void deletePost(Board board);
+
+    // For paging
+    Page<Board> getList(int page);
 }

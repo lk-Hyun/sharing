@@ -23,14 +23,24 @@ class BoardRepositoryTest {
     private MemberService memberService;
 
     @Test
-    void q() {
+    void forEach() {
+        Member member = memberService.findOne("ww@mail");
+
+        for (int i = 1; i <= 100; i++) {
+            System.out.println("Hello");
+            boardRepository.save(new Board(member, "테스트용 제목 - " + i, "내용 없음", member.getNickname(), LocalDateTime.now(), null));
+        }
+    }
+
+    @Test
+    void t() {
         Member member = new Member("Lee", "1234", "peed", "oo@mail", LocalDateTime.now());
 
-        memberService.join(member);
+//        memberService.join(member);
 
         Board board = new Board(member, "hi", "spring", member.getNickname(), LocalDateTime.now(), null);
 
-        boardRepository.save(board);
+//        boardRepository.save(board);
 
         List<BoardDTO> boards = boardRepository.findBoardDTOs();
 
@@ -38,6 +48,11 @@ class BoardRepositoryTest {
             System.out.println("boardDTO = " + boardDTO);
         }
 
-        assertEquals(1, boards.size());
+        assertEquals(2, boards.size());
+    }
+
+    @Test
+    void paging() {
+
     }
 }

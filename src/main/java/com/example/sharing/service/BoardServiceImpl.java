@@ -6,6 +6,10 @@ import com.example.sharing.domain.entity.Member;
 import com.example.sharing.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -57,5 +61,11 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void deletePost(Board board) {
 
+    }
+
+    @Override
+    public Page<Board> getList(int page) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
+        return boardRepository.findAll(pageable);
     }
 }
