@@ -9,22 +9,32 @@
 
     <div class="container-lg" style="min-height: 450px;">
         <div class="col-sm-11 col-md-10 col-lg-10 mx-auto">
-        <table class="table table-hover my-lg-4 my-md-4 my-sm-3">
-            <thead class="table-info">
-            <tr>
-                <th scope="col">제목</th>
-                <th scope="col" class="text-end">작성자</th>
-                <th scope="col" class="text-center">작성일시</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="article, loop : ${paging}" th:onclick="|location.href='view/${article.id}'|">
-                <td th:text="${article.title}"></td>
-                <td th:text="${article.createdBy}" class="text-end"></td>
-                <td th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd HH:mm')}" class="text-center"></td>
-            </tr>
-            </tbody>
-        </table>
+            <div class="input-group">
+                <div class="form-outline">
+                    <input type="search" name="searchKeyword" id="searchKeyword" class="form-control" />
+                    <label class="form-label" for="searchKeyword">Search</label>
+                </div>
+                <button type="button" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <table class="table table-hover my-lg-4 my-md-4 my-sm-3">
+                <thead class="table-info">
+                <tr>
+                    <th scope="col">제목</th>
+                    <th scope="col" class="text-end">작성자</th>
+                    <th scope="col" class="text-center">작성일시</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="article, loop : ${paging}" th:onclick="|location.href='view/${article.id}'|">
+                    <td th:text="${article.title}"></td>
+                    <td th:text="${article.createdBy}" class="text-end"></td>
+                    <td th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd HH:mm')}" class="text-center"></td>
+                </tr>
+                </tbody>
+            </table>
             <div th:if="${!paging.isEmpty()}">
                 <ul class="pagination justify-content-center">
                     <li class="page-item" th:classappend="${!paging.hasPrevious()} ? 'disabled'">
@@ -47,12 +57,12 @@
                 </ul>
             </div>
 
-        <button class="btn btn-primary float-end"
-                onclick="location.href='/views/writeArticle.html'"
-                th:onclick="|location.href='@{/writeArticle}'|"
-                sec:authorize="isAuthenticated()"
-        >글 쓰기</button>
-    </div>
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='/views/writeArticle.html'"
+                    th:onclick="|location.href='@{/writeArticle}'|"
+                    sec:authorize="isAuthenticated()"
+            >글 쓰기</button>
+        </div>
     </div>
 
 </th:block>

@@ -3,6 +3,7 @@ package com.example.sharing.service;
 import com.example.sharing.domain.dto.BoardDTO;
 import com.example.sharing.domain.entity.Board;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,16 +19,18 @@ public interface BoardService {
 
     Optional<Board> readPost(Long board_id);
 
-    List<Board> readAllPost();
-
-    List<BoardDTO> getBoardDTOs();
+//    List<Board> readAllPost();
+//
+//    List<BoardDTO> getBoardDTOs();
 
     Long writePost(BoardDTO boardDTO, String email);
 
-    Long postModify(Board board);
-
-    void deletePost(Board board);
+//    Long postModify(Board board);
+//
+//    void deletePost(Board board);
 
     // For paging
-    Page<Board> getList(int page);
+    Page<Board> getList(Pageable pageable);
+
+    Page<Board> getSearchList(Pageable pageable, String keyword);
 }

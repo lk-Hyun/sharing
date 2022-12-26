@@ -7,6 +7,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,12 +25,28 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping({"", "/"})
-    public String index(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
-        Page<Board> paging = boardService.getList(page);
+    public String index(Model model, @RequestParam(required = false) String keyword,
+                        @PageableDefault(sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
+
+        Page<Board> paging;
+
+        if (keyword == null) {
+            paging = boardService.getList(pageable);
+        } else {
+            paging = boardService.getSearchList(pageable, keyword);
+        }
+
         model.addAttribute("paging", paging);
 
         return "index";
     }
+//    @GetMapping({"", "/"})
+//    public String index(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam String keyword) {
+//        Page<Board> paging = boardService.getList(page);
+//        model.addAttribute("paging", paging);
+//
+//        return "index";
+//    }
 
     @GetMapping("/view/{board_id}")
     public String getArticle(@PathVariable Long board_id, Model model) {

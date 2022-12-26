@@ -29,10 +29,10 @@ public class BoardServiceImpl implements BoardService {
         return boardRepository.findById(board_id);
     }
 
-    @Override
-    public List<Board> readAllPost() {
-        return boardRepository.findAll();
-    }
+//    @Override
+//    public List<Board> readAllPost() {
+//        return boardRepository.findAll();
+//    }
 
     @Override
     public Long writePost(BoardDTO boardDTO, String email) {
@@ -53,19 +53,25 @@ public class BoardServiceImpl implements BoardService {
         return boardRepository.findBoardDTOs();
     }
 
-    @Override
-    public Long postModify(Board board) {
-        return null;
-    }
+//    @Override
+//    public Long postModify(Board board) {
+//        return null;
+//    }
+//
+//    @Override
+//    public void deletePost(Board board) {
+//
+//    }
 
     @Override
-    public void deletePost(Board board) {
-
-    }
-
-    @Override
-    public Page<Board> getList(int page) {
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
+    public Page<Board> getList(Pageable pageable) {
+//        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
         return boardRepository.findAll(pageable);
     }
+
+    @Override
+    public Page<Board> getSearchList(Pageable pageable, String keyword) {
+        return boardRepository.findByTitleContaining(keyword, pageable);
+    }
+
 }
