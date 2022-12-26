@@ -13,8 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -27,11 +25,6 @@ public class BoardController {
     public String index(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
         Page<Board> paging = boardService.getList(page);
         model.addAttribute("paging", paging);
-
-//        List<BoardDTO> boards = boardService.getBoardDTOs();
-//        log.info("boards = {}", boards);
-//
-//        model.addAttribute("articles", boards);
 
         return "index";
     }
@@ -63,4 +56,5 @@ public class BoardController {
 
         return "redirect:/";
     }
+
 }

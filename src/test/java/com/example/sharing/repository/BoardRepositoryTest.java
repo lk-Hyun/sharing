@@ -4,13 +4,18 @@ import com.example.sharing.domain.dto.BoardDTO;
 import com.example.sharing.domain.dto.LoginForm;
 import com.example.sharing.domain.entity.Board;
 import com.example.sharing.domain.entity.Member;
+import com.example.sharing.domain.entity.Reply;
+import com.example.sharing.service.BoardService;
 import com.example.sharing.service.MemberService;
+import com.example.sharing.service.ReplyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,9 +23,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class BoardRepositoryTest {
 
     @Autowired
+    private BoardService boardService;
+    @Autowired
     private BoardRepository boardRepository;
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private ReplyService replyService;
 
     @Test
     void forEach() {
@@ -52,7 +62,30 @@ class BoardRepositoryTest {
     }
 
     @Test
-    void paging() {
+    @Transactional
+    void boardReplyCascade() {
+        Member member = new Member("chang", "1234", "min", "gg@mail", LocalDateTime.now());
+
+        Board board = new Board(member, "hello", "oo", member.getNickname(), LocalDateTime.now(), null);
+
+        Reply reply = new Reply();
+        reply.setContent("hi");
+
+        Reply reply1 = new Reply();
+        reply1.setContent("compose");
+
+        board.addReply(reply);
+        board.addReply(reply1);
+
+        memberService.join(member);
+        boardRepository.save(board);
+
+        Board find = boardRepository.findById(board.getId()).get();
+        for (Reply findReply : find.getReplies()) {
+            System.out.println(findReply.getContent());
+        }
+        assertEquals(2, find.getReplies().size());
+
 
     }
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,6 +22,14 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    private List<Reply> replies = new ArrayList<>();
+
+    public void addReply(Reply reply) {
+        this.replies.add(reply);
+        reply.setBoard(this);
+    }
 
     private String title;
 
@@ -38,4 +48,5 @@ public class Board {
         this.createdAt = createdAt;
         this.lastModify = lastModify;
     }
+
 }
