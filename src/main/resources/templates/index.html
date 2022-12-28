@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="article, loop : ${paging}" th:onclick="|location.href='view/${article.id}'|">
+            <tr th:each="article : ${paging}" th:onclick="|location.href='view/${article.id}'|">
                 <td th:text="${article.title}"></td>
                 <td th:text="${article.createdBy}" class="text-end"></td>
                 <td th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd HH:mm')}" class="text-center"></td>

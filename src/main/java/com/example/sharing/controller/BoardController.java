@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -40,13 +41,6 @@ public class BoardController {
 
         return "index";
     }
-//    @GetMapping({"", "/"})
-//    public String index(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam String keyword) {
-//        Page<Board> paging = boardService.getList(page);
-//        model.addAttribute("paging", paging);
-//
-//        return "index";
-//    }
 
     @GetMapping("/view/{board_id}")
     public String getArticle(@PathVariable Long board_id, Model model) {
@@ -76,4 +70,14 @@ public class BoardController {
         return "redirect:/";
     }
 
+//    @GetMapping("/article/modify/{id}")
+//    public String articleModify(Model model, @PathVariable Long id) {
+//        Board board = boardService.readPost(id).get();
+//
+//        log.info("id = {}", id);
+//
+//        model.addAttribute("board", board);
+//
+//        return "views/writeArticle";
+//    }
 }
