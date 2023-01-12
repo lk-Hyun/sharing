@@ -1,7 +1,6 @@
 package com.example.sharing.repository;
 
 import com.example.sharing.domain.dto.BoardDTO;
-import com.example.sharing.domain.dto.LoginForm;
 import com.example.sharing.domain.entity.Board;
 import com.example.sharing.domain.entity.Member;
 import com.example.sharing.domain.entity.Reply;
@@ -15,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -85,7 +83,14 @@ class BoardRepositoryTest {
             System.out.println(findReply.getContent());
         }
         assertEquals(2, find.getReplies().size());
+    }
 
+    @Test
+    void getDTOById() {
+        Member member = memberService.findOne("ww@mail");
 
+        BoardDTO board = boardRepository.findBoardDTOById(member.getId());
+
+        System.out.println(board);
     }
 }

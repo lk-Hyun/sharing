@@ -16,14 +16,19 @@ public class ReplyServiceImpl implements ReplyService {
     private final ReplyRepository replyRepository;
 
     @Override
-    public void create(Board board, String writer, String content) {
+    public Long create(Board board, String writer, String content) {
         Reply reply = Reply.builder()
                 .board(board)
                 .content(content)
                 .createdBy(writer)
                 .createdAt(LocalDateTime.now()).build();
 
-        replyRepository.save(reply);
+        return replyRepository.save(reply).getId();
+    }
+
+    @Override
+    public Long update() {
+        return null;
     }
 
     @Override

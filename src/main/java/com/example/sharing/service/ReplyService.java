@@ -4,7 +4,9 @@ import com.example.sharing.domain.entity.Board;
 
 public interface ReplyService {
 
-    void create(Board board, String writer, String content);
+    Long create(Board board, String writer, String content);
+
+    Long update();
 
     void delete(Long id);
 

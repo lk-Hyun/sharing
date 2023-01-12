@@ -22,7 +22,7 @@ public class ReplyController {
     private final ReplyService replyService;
     private final MemberService memberService;
 
-    @PostMapping("/create/{id}")
+    @PostMapping("/{id}")
     public String createReply(@PathVariable Long id, @RequestParam String content, Principal principal) {
         log.info("content = {}", content);
         Board board = boardService.readPost(id).get();
@@ -31,6 +31,6 @@ public class ReplyController {
 
         replyService.create(board, member.getNickname(), content);
 
-        return String.format("redirect:/view/%s", board.getId());
+        return String.format("redirect:/article/%s", board.getId());
     }
 }

@@ -12,6 +12,9 @@
       <div class="card border-0 shadow rounded-4 my-5">
         <div class="card-body p-4 p-sm-5">
           <h3 class="card-title text-center mb-4">로그인</h3>
+          <div th:if="error">
+            <p style="color: red;" th:text="${exception}"></p>
+          </div>
 
           <form action="login.html" th:action="@{/members/login}" method="post" th:object="${loginForm}">
             <div class="form-group mb-3">

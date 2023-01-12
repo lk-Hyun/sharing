@@ -25,5 +25,6 @@ public class Reply {
 
     private String createdBy;
     private LocalDateTime createdAt;
+    private LocalDateTime lastModify;
 
 }
